@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Document Portal</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <style>
+ 
+    </style>
+</head>
+<body>
+    <div id="loginContainer" class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required><br><br>
+        <input type="password" id="password" placeholder="Password" required><br><br>
+        <button onclick="login()">Login</button>
+        <p id="errorMessage" style="color: red; display: none;">Invalid credentials!</p>
+    </div>
+    <div id="mainContent" class="hidden">
+
+    <div class="header">
+        <h1>Study Document Portal</h1>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="semester-select">
+                <label for="semester">Select Semester:</label>
+                <select id="semester" onchange="filterBySemester()">
+                    <option value="all">All Semesters</option>
+                    <option value="sem1">Semester 1</option>
+                    <option value="sem2">Semester 2</option>
+                    <option value="sem3">Semester 3</option>
+                    <option value="sem4">Semester 4</option>
+                </select>
+            </div>
+            
+            <div class="subject-nav">
+                <h3>Subjects</h3>
+                <ul id="subjectList">
+                    <li class="active" data-subject="all">All Subjects</li>
+                    <li data-subject="math">ASP.NET</li>
+                    <li data-subject="Angular">Angular</li>
+                    <li data-subject="chemistry">Chemistry</li>
+                    <li data-subject="cs">Computer Science</li>
+                    <li data-subject="biology">Biology</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2 id="contentTitle">All Documents</h2>
+            
+            <ul class="doc-list" id="documentList">
+                <!-- Sample documents -->
+                <li class="doc-item" data-semester="sem1" data-subject="math">
+                    <div class="doc-title">Calculus I Notes</div>
+                    <div class="doc-meta">Semester 1 • ASP.NET • Updated: Jan 15, 2025</div>
+                    <div class="doc-description">Comprehensive notes covering limits, derivatives, and basic integration.</div>
+                    <div class="doc-actions">
+                        <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                        <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                    </div>
+                </li>
+                
+                
+                <li class="doc-item" data-semester="sem1" data-subject="Angular">
+                    <div class="doc-title">Mechanics Study Guide</div>
+                    <div class="doc-meta">Semester 1 • Angular • Updated: Feb 2, 2025</div>
+                    <div class="doc-description">Study guide for Newton's laws, kinematics, and conservation laws.</div>
+                    <h2>Angular Installation & Setup</h2>
+                    <p>Follow these steps to install Angular:</p>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCode('installCode')">Copy</button>
+                        <pre><code id="installCode">ng new my-app --no-standalone --routing --ssr=false
+                        </code></pre>
+                    </div>
+                    <h3>Create a New Angular Project</h3>
+                    <div class="code-container">
+                        <button class="copy-btn" onclick="copyCode('createProject')">Copy</button>
+                        <pre><code id="createProject">ng new my-app</code></pre>
+                    </div>
+                    <h3>Serve the Application</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('serveApp')">Copy</button>
+                <pre><code id="serveApp">cd my-app
+                ng serve --open</code></pre>
+            </div>
+            <h3>Bootstrap Installation</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('createProject')">Copy</button>
+                <pre><code id="createProject">npm install bootstrap</code></pre>
+            </div>
+            <h3>angular.json --ADD</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('createProject')">Copy</button>
+                <pre><code id="createProject">"styles": [
+                    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                    "src/styles.css"
+                  ]
+                  </code></pre>
+            </div>
+            <div class="doc-actions">
+                <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                <a href="https://drive.google.com/file/d/1examplevid1/view" target="_blank" rel="noopener" class="btn btn-video">Video</a>
+            </div>
+                </li>
+                
+                <li class="doc-item" data-semester="sem2" data-subject="chemistry">
+                    <div class="doc-title">Organic Chemistry Formulas</div>
+                    <div class="doc-meta">Semester 2 • Chemistry • Updated: Dec 10, 2024</div>
+                    <div class="doc-description">Quick reference sheet for organic chemistry reactions and mechanisms.</div>
+                    <div class="doc-actions">
+                        <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                        <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                        <a href="https://drive.google.com/file/d/1examplevid1/view" target="_blank" rel="noopener" class="btn btn-video">Video</a>
+                    </div>
+                </li>
+                
+                <li class="doc-item" data-semester="sem2" data-subject="cs">
+                    <div class="doc-title">Data Structures Cheat Sheet</div>
+                    <div class="doc-meta">Semester 2 • Computer Science • Updated: Jan 25, 2025</div>
+                    <div class="doc-description">Overview of common data structures with time complexity analysis.</div>
+                    <div class="doc-actions">
+                        <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                        <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                        <a href="https://drive.google.com/file/d/1examplevid1/view" target="_blank" rel="noopener" class="btn btn-video">Video</a>
+                    </div>
+                </li>
+                
+                <li class="doc-item" data-semester="sem3" data-subject="biology">
+                    <div class="doc-title">Cell Biology Diagrams</div>
+                    <div class="doc-meta">Semester 3 • Biology • Updated: Feb 10, 2025</div>
+                    <div class="doc-description">Collection of cell structure diagrams with detailed annotations.</div>
+                    <div class="doc-actions">
+                        <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                        <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                        <a href="https://drive.google.com/file/d/1examplevid1/view" target="_blank" rel="noopener" class="btn btn-video">Video</a>
+                    </div>
+                </li>
+                
+                <li class="doc-item" data-semester="sem4" data-subject="math">
+                    <div class="doc-title">Linear Algebra Summary</div>
+                    <div class="doc-meta">Semester 4 • ASP.NET • Updated: Feb 15, 2025</div>
+                    <div class="doc-description">Summary of vector spaces, linear transformations, and eigenvalues.</div>
+                    <div class="doc-actions">
+                        <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                        <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                        <a href="https://drive.google.com/file/d/1examplevid1/view" target="_blank" rel="noopener" class="btn btn-video">Video</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+    <script>
+          function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === "admin" && password === "1234") {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('hidden');
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers to subject list
+            const subjectItems = document.querySelectorAll('#subjectList li');
+            subjectItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    subjectItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    // Filter documents
+                    filterDocuments();
+                });
+            });
+            
+            // Initial filter
+            filterDocuments();
+        });
+
+        // Filter documents based on selected semester and subject
+        function filterDocuments() {
+            const selectedSemester = document.getElementById('semester').value;
+            const selectedSubject = document.querySelector('#subjectList li.active').getAttribute('data-subject');
+            
+            const documents = document.querySelectorAll('.doc-item');
+            let visibleCount = 0;
+            
+            documents.forEach(doc => {
+                const docSemester = doc.getAttribute('data-semester');
+                const docSubject = doc.getAttribute('data-subject');
+                
+                const semesterMatch = selectedSemester === 'all' || docSemester === selectedSemester;
+                const subjectMatch = selectedSubject === 'all' || docSubject === selectedSubject;
+                
+                if (semesterMatch && subjectMatch) {
+                    doc.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    doc.style.display = 'none';
+                }
+            });
+            
+            // Update the title
+            updateContentTitle(selectedSemester, selectedSubject, visibleCount);
+        }
+        
+        // Filter by semester (called from select change)
+        function filterBySemester() {
+            filterDocuments();
+        }
+        
+        // Update the content title based on filters
+        function updateContentTitle(semester, subject, count) {
+            let title = '';
+            
+            // Get semester name
+            let semesterName = 'All Semesters';
+            if (semester !== 'all') {
+                semesterName = document.querySelector(`#semester option[value="${semester}"]`).textContent;
+            }
+            
+            // Get subject name
+            let subjectName = 'All Subjects';
+            if (subject !== 'all') {
+                subjectName = document.querySelector(`#subjectList li[data-subject="${subject}"]`).textContent;
+            }
+            
+            // Create title
+            if (semester === 'all' && subject === 'all') {
+                title = 'All Documents';
+            } else if (semester === 'all') {
+                title = `${subjectName} Documents`;
+            } else if (subject === 'all') {
+                title = `${semesterName} Documents`;
+            } else {
+                title = `${subjectName} Documents - ${semesterName}`;
+            }
+            
+            // Add count
+            title += ` (${count})`;
+            
+            document.getElementById('contentTitle').textContent = title;
+        }
+        // -------------- copy---------------------
+        // function copyCode(elementId) {
+        //     const code = document.getElementById(elementId).innerText;
+        //     navigator.clipboard.writeText(code).then(() => {
+        //         //  alert('Code copied to clipboard!');
+        //     });
+        // }
+        function copyCode(elementId, messageId) {
+            const code = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const message = document.getElementById(messageId);
+                message.style.display = 'inline';
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
