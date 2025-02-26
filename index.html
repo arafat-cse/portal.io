@@ -103,6 +103,95 @@
                   ]
                   </code></pre>
             </div>
+            <h3>Component Service</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
+                <pre><code id="bootstraplink">
+                    ng generate service services/user
+                  </code></pre>
+            </div>
+            <h3>Services</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
+                <pre><code id="bootstraplink">
+                    import { Injectable } from '@angular/core';
+                    import { HttpClient } from '@angular/common/http';
+                    import { Observable } from 'rxjs';
+                    
+                    @Injectable({
+                      providedIn: 'root'
+                    })
+                    export class UserService {
+                      private baseUrl = 'https://api.example.com/users'; // এখানে আপনার API URL দিন
+                    
+                      constructor(private http: HttpClient) {}
+                    
+                      getUsers(): Observable<any> {
+                        return this.http.get(`${this.baseUrl}`);
+                      }
+                    
+                      getUserById(id: number): Observable<any> {
+                        return this.http.get(`${this.baseUrl}/${id}`);
+                      }
+                    
+                      addUser(user: any): Observable<any> {
+                        return this.http.post(`${this.baseUrl}`, user);
+                      }
+                    
+                      updateUser(id: number, user: any): Observable<any> {
+                        return this.http.put(`${this.baseUrl}/${id}`, user);
+                      }
+                    
+                      deleteUser(id: number): Observable<any> {
+                        return this.http.delete(`${this.baseUrl}/${id}`);
+                      }
+                    }
+                    
+                  </code></pre>
+            </div>
+            <h3>Component Create</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
+                <pre><code id="bootstraplink">
+                    ng generate component user-list
+                  </code></pre>
+            </div>
+            <h3>Componentuser-list.ts</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
+                <pre><code id="bootstraplink">
+                    import { Component, OnInit } from '@angular/core';
+                    import { UserService } from 'src/app/services/user.service';
+                    
+                    @Component({
+                      selector: 'app-user-list',
+                      templateUrl: './user-list.component.html',
+                      standalone: true
+                    })
+                    export class UserListComponent implements OnInit {
+                      users: any[] = [];
+                    
+                      constructor(private userService: UserService) {}
+                    
+                      ngOnInit(): void {
+                        this.loadUsers();
+                      }
+                    
+                      loadUsers() {
+                        this.userService.getUsers().subscribe(data => {
+                          this.users = data;
+                        });
+                      }
+                    
+                      deleteUser(id: number) {
+                        this.userService.deleteUser(id).subscribe(() => {
+                          this.loadUsers();
+                        });
+                      }
+                    }
+                    
+                  </code></pre>
+            </div>
             <div class="doc-actions">
                 <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
                 <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
