@@ -56,12 +56,53 @@
             <ul class="doc-list" id="documentList">
                 <!-- Sample documents -->
                 <li class="doc-item" data-semester="sem1" data-subject="math">
-                    <div class="doc-title">Calculus I Notes</div>
-                    <div class="doc-meta">Semester 1 • ASP.NET • Updated: Jan 15, 2025</div>
+                    <div class="doc-title">ASP.NET MVC</div>
+                    <div class="doc-meta">Semester 1 • ASP.NET MVC • Updated: Jan 15, 2025</div>
                     <div class="doc-description">Comprehensive notes covering limits, derivatives, and basic integration.</div>
-                    <div class="doc-actions">
+                    <!-- <div class="doc-actions">
                         <a href="https://drive.google.com/file/d/1example2/view" target="_blank" rel="noopener" class="btn">View</a>
+                        <div id="mvcContainer" class="mvc-container">
+                            <button onclick="mvc()">view</button>                          
+                        </div>
+                        <div id="mvcContent" class="hidden">
+                            <h2>Hello World</h2>
+                        </div>
                         <a href="https://drive.google.com/uc?export=download&id=1example2" class="btn btn-download">Download</a>
+                    </div> -->
+                    <div class="doc-actions">
+                        <div id="mvcContainer">
+                            <button class="btn" onclick="mvc()">View</button>
+                        </div>
+                    
+                        <div id="mvcContent" class="hidden">
+                            <h2>Step By Stap & Setup</h2>
+                            <p>Follow these steps to install ASP.NET MVC:</p>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode('createProjectmvc')">Copy</button>
+                                <pre><code id="createProjectmvc">ASP.NET Web Application(.NET Framework) </code></pre>
+                            </div>
+                            <h3>Click Next Button</h3>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode('createProjectLocation')">Copy</button>
+                                <pre><code id="createProjectLocation">Project Name Or Location Select</code></pre>
+                            </div>
+                            <h3>Click Create Button</h3>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode('projectDone')">Copy</button>
+                                <pre><code id="projectDone">Project Done</code></pre>
+                            </div>
+                            <h3>Models Folder Class Create</h3>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode('projectDone')">Copy</button>
+                                <pre><code id="projectDone">Project Done</code></pre>
+                            </div>
+                            <h3>Create User.cs</h3>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode('projectDone')">Copy</button>
+                                <pre><code id="projectDone">Project Done</code></pre>
+                            </div>
+                            <button class="btn btn-close" onclick="closeMvc()">Close</button>
+                        </div>
                     </div>
                 </li>
                 
@@ -256,8 +297,19 @@
                 document.getElementById('mainContent').classList.remove('hidden');
             } else {
                 document.getElementById('errorMessage').style.display = 'block';
+                }
             }
+        //  Mvc view Code script start
+        function mvc() {
+        document.getElementById('mvcContainer').style.display = 'none';
+        document.getElementById('mvcContent').classList.remove('hidden');
         }
+
+        function closeMvc() {
+            document.getElementById('mvcContainer').style.display = 'block';
+            document.getElementById('mvcContent').classList.add('hidden');
+        }
+        //  Mvc view Code script End
 
 
 
