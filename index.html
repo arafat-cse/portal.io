@@ -136,8 +136,8 @@
             </div>
             <h3>angular.json --ADD</h3>
             <div class="code-container">
-                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
-                <pre><code id="bootstraplink">
+                <button class="copy-btn" onclick="copyCode('angular-json')">Copy</button>
+                <pre><code id="angular-json">
                     "styles": [
                     "node_modules/bootstrap/dist/css/bootstrap.min.css",
                     "src/styles.css"
@@ -146,15 +146,15 @@
             </div>
             <h3>Component Service</h3>
             <div class="code-container">
-                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
-                <pre><code id="bootstraplink">
+                <button class="copy-btn" onclick="copyCode('c-service')">Copy</button>
+                <pre><code id="c-service">
                     ng generate service services/user
                   </code></pre>
             </div>
             <h3>Services</h3>
             <div class="code-container">
-                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
-                <pre><code id="bootstraplink">
+                <button class="copy-btn" onclick="copyCode('service')">Copy</button>
+                <pre><code id="service">
                     import { Injectable } from '@angular/core';
                     import { HttpClient } from '@angular/common/http';
                     import { Observable } from 'rxjs';
@@ -190,17 +190,72 @@
                     
                   </code></pre>
             </div>
+            <h3>app.module.ts</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('app-module')">Copy</button>
+                <pre><code id="app-module">
+                    import { NgModule } from '@angular/core';
+                    import { BrowserModule } from '@angular/platform-browser';
+                    
+                    import { AppRoutingModule } from './app-routing.module';
+                    import { AppComponent } from './app.component';
+                    import { FormsModule } from '@angular/forms';
+                    import { HttpClientModule } from '@angular/common/http';
+                    
+                    
+                    @NgModule({
+                      declarations: [
+                        AppComponent
+                      ],
+                      imports: [
+                        BrowserModule,
+                        AppRoutingModule,FormsModule,
+                        HttpClientModule
+                      ],
+                      providers: [],
+                      bootstrap: [AppComponent]
+                    })
+                    export class AppModule { }                    
+                    
+                  </code></pre>
+            </div>
+
+            <h3>app-routing.module.ts</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyCode('app-routing')">Copy</button>
+                <pre><code id="app-routing">
+                    import { NgModule } from '@angular/core';
+                    import { RouterModule, Routes } from '@angular/router';
+                    import { CompanyComponent } from './components/company/company.component'; 
+                   
+
+                    const routes: Routes = [
+                        { path: '', component: CompanyComponent },  // Default route
+                        { path: 'company', component: CompanyComponent },  // Route for '/company'
+                        // More routes can be added here
+                    ];
+                    
+
+                    @NgModule({
+                    imports: [RouterModule.forRoot(routes)],  // Add RouterModule with your routes
+                    exports: [RouterModule]  // Export RouterModule so it can be used in the main app module
+                    })
+                    export class AppRoutingModule {}
+                 
+                    
+                  </code></pre>
+            </div>
             <h3>Component Create</h3>
             <div class="code-container">
-                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
-                <pre><code id="bootstraplink">
+                <button class="copy-btn" onclick="copyCode('C-component')">Copy</button>
+                <pre><code id="C-component">
                     ng generate component user-list
                   </code></pre>
             </div>
             <h3>Componentuser-list.ts</h3>
             <div class="code-container">
-                <button class="copy-btn" onclick="copyCode('bootstraplink')">Copy</button>
-                <pre><code id="bootstraplink">
+                <button class="copy-btn" onclick="copyCode('Componentuser-list')">Copy</button>
+                <pre><code id="Componentuser-list">
                     import { Component, OnInit } from '@angular/core';
                     import { UserService } from 'src/app/services/user.service';
                     
@@ -292,7 +347,7 @@
           function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            if (username === "admin" && password === "1234") {
+            if (username === "a" && password === "741") {
                 document.getElementById('loginContainer').style.display = 'none';
                 document.getElementById('mainContent').classList.remove('hidden');
             } else {
